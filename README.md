@@ -127,3 +127,19 @@ For specific details on running the API and React Native app, refer to their res
 
 **Note:**
 This project is designed to take approximately 3 hours, but there is no strict time limit. We are interested in seeing how far you can get and the quality of your final deliverable. Focus on completing the core requirements before attempting the stretch goals. Feel free to make reasonable assumptions if certain details are not explicitly provided. If you encounter challenges, document them and describe how you would address them with more time.
+
+## Documentation
+I made three major changes to this codebase:
+
+1. I put in a rudimentary authentication system and session persistence using the documentation found here: https://docs.expo.dev/router/reference/authentication/
+I hadn't used this part of expo before, but I figured if it's what the app is already using their own solution would be the best way to go about it.
+The authentication credentials are currently hardcoded into the app with user 'Aloysius' and password '12345'. Obviously this isn't ideal -- if I were to keep going I'd implement authentication through firebase, since I've already put firebase into the app, but I ran out of time.
+
+2. I put in redux. The state management already in worked well! But I thought if the app were to scale some sort of centralized state management would be better. I didn't fully switch over all the logic to redux, just partially. The machine health scores and factory health score on index are now pulled from the redux state. If I had more time, I'd switch the whole thing over and tidy up a bit.
+
+3. I added firestore to the backend for persistence. I don't actually have anything in there to call the data points back after they're stored in Firebase (there didn't seem to be a reason to) but each query to machine health now stores the results of the query in a document with a timestamp id as well as recording the name of the user making the query (currently just Aloysius). I wouldn't go with a timestamp id in the future, that would be incredibly confusing; maybe it'd be better to store all of the queries of an individual user together, then keep timestamp in the document. I actually like that way better.
+
+I'll note the service account for the project from google is committed in the project files. I know this is bad!! It made me cringe to do it. It just seemed easier than setting up an .env file and... emailing it or getting it over somehow.
+
+## New Instructions
+When logging in, use username Aloysius and password 12345. 
